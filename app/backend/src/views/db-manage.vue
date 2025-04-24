@@ -1,13 +1,13 @@
 <template>
     <div class="backend-content" id="content">
         <div class="column col-8 col-xs-12">
-          <h3 class="s-title">Manage database</h3>
+          <h3 class="s-title">Gérer la database</h3>
           <ul class="tab tab-block">
             <li class="tab-item">
-                <a href="#" v-on:click="switch_tab('import')" v-bind:class="{ active: tabs.import }">Import database</a>
+                <a href="#" v-on:click="switch_tab('import')" v-bind:class="{ active: tabs.import }">Importer une database</a>
             </li>
             <li class="tab-item">
-                <a href="#" v-on:click="switch_tab('export')" v-bind:class="{ active: tabs.export }">Export database</a>
+                <a href="#" v-on:click="switch_tab('export')" v-bind:class="{ active: tabs.export }">Exporter une database</a>
             </li>
           </ul>
           <div v-if="tabs.export">
@@ -16,8 +16,8 @@
           <div v-if="tabs.import">
                 <label class="form-upload empty" for="upload">
                     <input type="file" class="upload-field" id="upload" @change="import_from_file">
-                    <p class="empty-title h5">Drop or select a database to import.</p>
-                    <p class="empty-subtitle">The database needs to be an export from a SpyGuard instance.</p>
+                    <p class="empty-title h5">Drop ou selectionner une database à importer.</p>
+                    <p class="empty-subtitle">La database doit être exporter depuis une instance SpyGuard.</p>
                 </label>
             </div>
         </div>

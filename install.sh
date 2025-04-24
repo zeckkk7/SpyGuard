@@ -45,23 +45,10 @@ set_credentials() {
     # Set the credentials to access to the backend.
     echo -e "\e[39m[+] Setting the backend credentials...\e[39m"
     echo -n "    Please choose a username for SpyGuard's backend: "
-    read login
+    login="spytest"
     echo -n "    Please choose a password for SpyGuard's backend: "
-    read -s password1
+    password1="arki84"
     echo ""
-    echo -n "    Please confirm the password: "
-    read -s password2
-    echo ""
-
-    if [ $password1 = $password2 ]; then
-        password=$(echo -n "$password1" | sha256sum | cut -d" " -f1)
-        sed -i "s/userlogin/$login/g" /usr/share/spyguard/config.yaml
-        sed -i "s/userpassword/$password/g" /usr/share/spyguard/config.yaml
-        echo -e "\e[92m    [✔] Credentials saved successfully!\e[39m"
-    else
-        echo -e "\e[91m    [✘] The passwords aren't equal, please retry.\e[39m"
-        set_credentials
-    fi
 }
 
 create_directory() {

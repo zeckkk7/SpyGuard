@@ -2,12 +2,12 @@
     <div class="backend-content" id="content">
         <div class="column col-8 col-xs-12">
             <br />
-            <p><strong>A new SpyGuard version is available ({{next_version}}).</strong><br />
-                <span v-if="!update_launched">Please click on the button below to update your instance.</span>
-                <span v-if="update_launched&&!update_finished">Updating SpyGuard, please wait. You'll be redirected once updated.</span>     
-                <span v-if="update_launched&&update_finished" class="color-green">✓ Update finished!</span>
+            <p><strong>Une nouvelle version est disponible ({{next_version}}).</strong><br />
+                <span v-if="!update_launched">Veuillez cliquer sur le bouton ci-dessous pour l'installer.</span>
+                <span v-if="update_launched&&!update_finished">Mise à jour de SpyGurd, veuillez attendre. Vous allez être redirigé une fois mis à jour.</span>     
+                <span v-if="update_launched&&update_finished" class="color-green">✓ Mise à jour fini!</span>
             </p>
-            <button class="btn btn-primary" :class="[ update_launched ? 'loading' : '' ]" v-on:click="launch_update()" v-if="!update_finished">Update Spyguard</button>
+            <button class="btn btn-primary" :class="[ update_launched ? 'loading' : '' ]" v-on:click="launch_update()" v-if="!update_finished">Mettre à jour SpyGuard</button>
         </div>
     </div>
 </template>

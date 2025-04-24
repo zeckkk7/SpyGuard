@@ -2,12 +2,12 @@
     <div class="backend-content" id="content">
       <div class="column col-8 col-xs-12">
           <div class="container">
-            <h3 class="s-title">Getting started</h3>
+            <h3 class="s-title">Commençons</h3>
             <br />
-            <p>SpyGuard is a forked and enhanced version of TinyCheck, an application developed by Kaspersky. SpyGuard's main objective is to detect signs of compromise by monitoring network flows transmitted by a device.</p>
-            <p>As it uses WiFi, SpyGuard can be used against a wide range of devices, such as smartphones, laptops, IOTs or workstations. To do its job, the analysis engine of SpyGuard is using Indicators of Compromise (IOCs), anomaly detection and is supported by Suricata. </p>
+            <p>SpyGuard est un logiciel avancé de TinyCheck. Il sert à détecter si ou non votre appareil est espionné par un tier.</p>
+            <p>Pour cela il utilise le wifi, ce qui signifie qu'il peut être utilisé contre plusieurs appareils comme des téléphones, des tablettes, des ordinateurs portables. </p>
 
-            <p>This backend lets you configure your SpyGuard instance. You can push some IOCs for detection and whitelist elements which can be seen during legit communications in order to prevent false positives.</p>
+            <p>Cette page sert à configurer SpyGuard. Vous pouvez y ajouter des IOCs pour la détection et whitelist des éléments qui peuvent être considéré comme normaux lors des tests pour éviter les faux positifs.</p>
             <p>_</p>
           </div>
           <div class="backend-footer container grid-lg" id="copyright">

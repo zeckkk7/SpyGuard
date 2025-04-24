@@ -1,38 +1,38 @@
 <template>
     <div class="backend-content" id="content">
         <div class="column col-8 col-xs-12">
-            <h3 class="s-title">Manage MISP instances</h3>
+            <h3 class="s-title">Gérer les instances MISP</h3>
             <ul class="tab tab-block">
                 <li class="tab-item">
-                    <a href="#" v-on:click="switch_tab('addmisp')" v-bind:class="{ active: tabs.addmisp }">Add instance</a>
+                    <a href="#" v-on:click="switch_tab('addmisp')" v-bind:class="{ active: tabs.addmisp }">Ajouter une instance</a>
                 </li>
                 <li class="tab-item">
-                    <a href="#" v-on:click="switch_tab('instances')" v-bind:class="{ active: tabs.instances }">Existing instances</a>
+                    <a href="#" v-on:click="switch_tab('instances')" v-bind:class="{ active: tabs.instances }">Instances déjà existantes</a>
                 </li>
             </ul>
             <div v-if="tabs.addmisp">
                 <div class="misp-form">
-                    <label class="misp-label">Instance name</label><span></span>
+                    <label class="misp-label">Nom de l'instance</label><span></span>
                     <input class="form-input" type="text" ref="misp_name" placeholder="CYBERACME MISP" v-model="mispinst.name" required>
-                    <label class="misp-label">Instance URL</label><span></span>
+                    <label class="misp-label">URL de l'instance</label><span></span>
                     <input class="form-input" type="text" ref="misp_url" placeholder="https://misp.cyberacme.com" v-model="mispinst.url" required>
-                    <label class="misp-label">Authentication key</label><span></span>
+                    <label class="misp-label">Clé d'authentification</label><span></span>
                     <input class="form-input" type="text" ref="misp_key" placeholder="OqHSMyAuth3ntic4t10nK3y0MyAuth3ntic4t10nK3y3iiH" v-model="mispinst.key" required>
-                    <label class="misp-label" v-if="mispinst.url.startsWith('https://')">Verify certificate? </label><span  v-if="mispinst.url.startsWith('https://')"></span>
+                    <label class="misp-label" v-if="mispinst.url.startsWith('https://')">Verifier le certificat? </label><span  v-if="mispinst.url.startsWith('https://')"></span>
                     <div style="flex:50%" v-if="mispinst.url.startsWith('https://')"><label class="form-switch">
                     <input type="checkbox" v-model="mispinst.ssl">
                     <i class="form-icon"></i>
                     </label></div>
                 </div>
-                <button class="btn-primary btn col-12" v-on:click="add_instance()">Add MISP instance</button>
+                <button class="btn-primary btn col-12" v-on:click="add_instance()">Ajouter l'instance MISP</button>
                 <div class="form-group" v-if="added">
                     <div class="toast toast-success">
-                        ✓ MISP instance added successfully. Redirecting to instances in 2 seconds. 
+                        ✓ instance MISP ajoutée avec succès. Redirection vers l'instance dans 2 secondes. 
                     </div>
                 </div>
                 <div class="form-group" v-if="error">
                     <div class="toast toast-error">
-                        ✗ MISP instance not added. {{error}}
+                        ✗ instance MISP pas ajoutée. {{error}}
                     </div>
                 </div>
             </div>
@@ -41,8 +41,8 @@
                     <table class="table table-striped table-hover">
                         <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Server</th>
+                                <th>Nom</th>
+                                <th>Serveur</th>
                                 <th>Authkey</th>
                                 <th>Status</th>
                                 <th>Action</th>
@@ -54,10 +54,10 @@
                                 <td>{{ i.url.replace('https://', '') .replace('http://', '') }}</td>
                                 <td>{{ i.apikey.slice(0,5) }} [...] {{ i.apikey.slice(35,40) }}</td>
                                 <td>
-                                    <span v-if="i.connected" class="instance-online tooltip" :data-tooltip="i.lastsync">✓ ONLINE</span>
-                                    <span v-else class="instance-offline tooltip" :data-tooltip="i.lastsync">⚠ OFFLINE</span>
+                                    <span v-if="i.connected" class="instance-online tooltip" :data-tooltip="i.lastsync">✓ EN LIGNE</span>
+                                    <span v-else class="instance-offline tooltip" :data-tooltip="i.lastsync">⚠ HORS LIGNE</span>
                                 </td>
-                                <td><button class="btn btn-sm" v-on:click="delete_instance(i)">Delete</button></td>
+                                <td><button class="btn btn-sm" v-on:click="delete_instance(i)">Suprrimer</button></td>
                             </tr>
                         </tbody>
                     </table>
@@ -68,11 +68,11 @@
                             <p class="empty-title h5">
                                 <span class="loading loading-lg"></span>
                             </p>
-                            <p class="empty-subtitle">Testing and loading your MISP instances.</p>
+                            <p class="empty-subtitle">Test et chargement de votre instance MISP.</p>
                         </div>
                         <div v-else>
-                            <p class="empty-title h5">No MISP instance found.</p>
-                            <p class="empty-subtitle">Do not hesitate to add a MISP instance.</p>
+                            <p class="empty-title h5">Aucune instance MISP trouvée.</p>
+                            <p class="empty-subtitle">N'hésitez pas à ajouter une instance MISP.</p>
                         </div>
                     </div>
                 </div>

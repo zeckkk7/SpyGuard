@@ -2,35 +2,35 @@
     <div class="backend-content" id="content">
         <div v-bind:class="{ 'alert-toaster-visible' : toaster.show, 'alert-toaster-hidden' : !toaster.show }">{{toaster.message}}</div>
         <div class="column col-8 col-xs-12">
-            <h3 class="s-title">Detection engine configuration</h3>
-            <h5 class="s-subtitle">Detection methods</h5>
+            <h3 class="s-title">Configuration de l'outil de détection</h3>
+            <h5 class="s-subtitle">Méthodes de détection</h5>
             <div class="form-group">
                 <label class="form-switch">
                     <input type="checkbox" @change="local_analysis('analysis', 'heuristics')" v-model="config.analysis.heuristics">
-                    <i class="form-icon"></i> Use heuristic detection for suspect behaviour.
+                    <i class="form-icon"></i> Utiliser la détection heuristique pour les comportements suspects.
                 </label>
                 <label class="form-switch">
                     <input type="checkbox" @change="local_analysis('analysis', 'iocs')" v-model="config.analysis.iocs">
-                    <i class="form-icon"></i> Use Indicator of Compromise (IoC) based detection.
+                    <i class="form-icon"></i> Utiliser la détection basée sur l’indicateur de compromission (IoC).
                 </label>
                 <label class="form-switch">
                     <input type="checkbox" @change="local_analysis('analysis', 'whitelist')" v-model="config.analysis.whitelist">
-                    <i class="form-icon"></i> Use whitelist to prevent false positives.
+                    <i class="form-icon"></i> Utiliser la whitelist pour éviter les faux positifs.
                 </label>
                 <label class="form-switch">
                     <input type="checkbox" @change="local_analysis('analysis', 'active')" v-model="config.analysis.active">
-                    <i class="form-icon"></i> Use active analysis (Dig, Whois, OpenSSL...).
+                    <i class="form-icon"></i> Utiliser l'analyse active.
                 </label>
                 <label class="form-switch">
                     <input type="checkbox" @change="switch_iocs_types('all')" :checked="config.analysis.indicators_types.includes('all')">
-                    <i class="form-icon"></i> Detect threats by using all IOCs.
+                    <i class="form-icon"></i> Détecter les menaces en utilisant tout les IOCs.
                 </label>
             </div>
             <div class="form-group" v-if="!config.analysis.indicators_types.includes('all')">
-                <h5 class="s-subtitle">IOCs categories</h5>
+                <h5 class="s-subtitle">Catégories IOCs </h5>
                 <label class="form-switch" v-for="tag in iocs_tags" :key="tag">
                     <input type="checkbox" @change="switch_iocs_types(tag)"  :checked="config.analysis.indicators_types.includes(tag)">
-                    <i class="form-icon"></i> Use IOCs related to {{ tag.toUpperCase() }} threat.
+                    <i class="form-icon"></i> Utiliser les IOCs liés à {{ tag.toUpperCase() }} threat.
                 </label>
             </div>
         </div>

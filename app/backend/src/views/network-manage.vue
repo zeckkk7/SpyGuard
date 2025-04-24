@@ -2,13 +2,13 @@
     <div class="backend-content" id="content">
         <div v-bind:class="{ 'alert-toaster-visible' : toaster.show, 'alert-toaster-hidden' : !toaster.show }">{{toaster.message}}</div>
         <div class="column col-8 col-xs-12">
-            <h3 class="s-title">Network configuration</h3>
-            <h5 class="s-subtitle">Interfaces configuration</h5>
+            <h3 class="s-title">Configuration réseau</h3>
+            <h5 class="s-subtitle">Configuration des interfaces</h5>
             <img src="@/assets/network.png" id="network-thumbnail" />
             <div class="container interfaces-container">
                 <div class="columns">
                     <div class="column col-6">
-                        <span class="interface-label">Wireless AP interface</span>
+                        <span class="interface-label">interface wifi pour créer le point d'accès</span>
                         <select class="form-select width-full" v-model="iface_in" @change="change_interface('in', iface_in)">
                             <option v-for="iface in config.ifaces_in" :value="iface" :key="iface">
                                 {{ iface.toUpperCase() }}
@@ -16,7 +16,7 @@
                         </select>
                     </div>
                     <div class="column col-6">
-                        <span class="interface-label">Internet link interface</span>
+                        <span class="interface-label">interface vers internet</span>
                         <select class="form-select width-full" v-model="iface_out" @change="change_interface('out', iface_out)">
                             <option v-for="iface in config.ifaces_out" :value="iface" :key="iface">
                                 {{ iface.toUpperCase() }}
@@ -25,23 +25,23 @@
                     </div>
                 </div>
             </div>
-            <h5 class="s-subtitle">Edit SSIDs names</h5>
+            <h5 class="s-subtitle">Modifier le nom des SSIDs</h5>
             <div class="form-group">
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr>
-                            <th>Network name</th>
+                            <th>Nom du réseau</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr v-for="ssid in config.network.ssids" :key="ssid">
                             <td>{{ ssid }}</td>
-                            <td><button class="btn btn-sm" v-on:click="delete_ssid(ssid)">Delete</button></td>
+                            <td><button class="btn btn-sm" v-on:click="delete_ssid(ssid)">Supprimer</button></td>
                         </tr>
                         <tr>
-                            <td><input class="form-input" v-model="ssid" type="text" placeholder="SSID name"></td>
-                            <td><button class="btn btn-sm" @click="add_ssid()">Add</button></td>
+                            <td><input class="form-input" v-model="ssid" type="text" placeholder="nom du SSID"></td>
+                            <td><button class="btn btn-sm" @click="add_ssid()">Ajouter</button></td>
                         </tr>
                     </tbody>
                 </table>

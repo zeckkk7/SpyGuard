@@ -14,55 +14,55 @@
         <div class="accordion-container">
           <div class="accordion">
             <input id="accordion-configuration" type="checkbox" name="backend-accordion-checkbox" hidden="">
-            <label class="accordion-header c-hand" for="accordion-configuration">Manage Device</label>
+            <label class="accordion-header c-hand" for="accordion-configuration">Gérer l'appareil</label>
             <div class="accordion-body">
               <ul class="menu menu-nav">
                 <li class="menu-item">
-                  <span @click="$router.push('/device/configuration')">Device config</span>
+                  <span @click="$router.push('/device/configuration')">Config appareil</span>
                 </li>
                 <li class="menu-item">
-                  <span @click="$router.push('/engine/configuration')">Analysis engine</span>
+                  <span @click="$router.push('/engine/configuration')">Outil d'analyse</span>
                 </li>
                 <li class="menu-item">
-                  <span @click="$router.push('/device/network')">Network config</span>
+                  <span @click="$router.push('/device/network')">Config réseau</span>
                 </li>
                 <li class="menu-item">
-                  <span @click="$router.push('/device/db')">Manage database</span>
+                  <span @click="$router.push('/device/db')">Gérer la database</span>
                 </li>
               </ul>
             </div>
           </div>
           <div class="accordion">
             <input id="accordion-iocs" type="checkbox" name="backend-accordion-checkbox" hidden="">
-            <label class="accordion-header c-hand" for="accordion-iocs">Manage IOCs</label>
+            <label class="accordion-header c-hand" for="accordion-iocs">Gérer les IOCs</label>
             <div class="accordion-body">
               <ul class="menu menu-nav">
                 <li class="menu-item">
-                  <span @click="$router.push('/iocs/manage')">Manage IOCs</span>
+                  <span @click="$router.push('/iocs/manage')">Gérer les IOCs</span>
                 </li>
                 <li class="menu-item">
-                  <span @click="$router.push('/iocs/search')">Search IOCs</span>
+                  <span @click="$router.push('/iocs/search')">Chercher les IOCs</span>
                 </li>
               </ul>
             </div>
           </div>
           <div class="accordion">
             <input id="accordion-whitelist" type="checkbox" name="backend-accordion-checkbox" hidden=""/>
-            <label class="accordion-header c-hand" for="accordion-whitelist">Manage Whitelist</label>
+            <label class="accordion-header c-hand" for="accordion-whitelist">Gérer la Whitelist</label>
             <div class="accordion-body">
               <ul class="menu menu-nav">
                 <li class="menu-item">
-                  <span @click="$router.push('/whitelist/manage')">Manage elements</span>
+                  <span @click="$router.push('/whitelist/manage')">Gérer les éléments</span>
                 </li>
                 <li class="menu-item">
-                  <span @click="$router.push('/whitelist/search')">Search elements</span>
+                  <span @click="$router.push('/whitelist/search')">Chercher les éléments</span>
                 </li>
               </ul>
             </div>
           </div>
           <div class="accordion">
             <input id="accordion-instances" type="checkbox" name="backend-accordion-checkbox" hidden=""/>
-            <label class="accordion-header c-hand" for="accordion-instances">External sources</label>
+            <label class="accordion-header c-hand" for="accordion-instances">Sources extérieures</label>
             <div class="accordion-body">
               <ul class="menu menu-nav">
                 <li class="menu-item">
@@ -79,7 +79,7 @@
     </div>
     <a class="off-canvas-overlay" href="#close"></a>
     <div class="off-canvas-content">
-      <div id="update-banner" v-if="update_available" @click="$router.push('/update')">A new version is available, click on the banner to install it.</div>
+      <div id="update-banner" v-if="update_available" @click="$router.push('/update')">Une nouvelle version est disponible, cliquez sur la bannière pour l'installer.</div>
       <transition name="fade" mode="out-in">
         <router-view/>
       </transition>
