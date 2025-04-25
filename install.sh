@@ -45,8 +45,8 @@ set_credentials() {
     # Set the credentials to access to the backend.
     echo -e "\e[39m[+] Setting the backend credentials...\e[39m"
     echo -n "    Please choose a username for SpyGuard's backend: "
-    login="spytest"
-    password1="arki84"
+    login=""
+    password1=""
     password=$(echo -n "$password1" | sha256sum | cut -d" " -f1)
     sed -i "s/userlogin/$login/g" /usr/share/spyguard/config.yaml
     sed -i "s/userpassword/$password/g" /usr/share/spyguard/config.yaml
