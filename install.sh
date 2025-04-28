@@ -21,7 +21,7 @@ set_userlang() {
     echo -e "\e[39m[+] Setting the user language...\e[39m"
     printf -v joined '%s/' "${LOCALES[@]}"
     echo -n "    Please choose a language for the reports and the user interface (${joined%/}): "
-    read lang
+    lang="fr"
 
     if [[ " ${LOCALES[@]} " =~ " ${lang} " ]]; then
         sed -i "s/userlang/${lang}/g" /usr/share/spyguard/config.yaml
