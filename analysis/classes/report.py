@@ -4,11 +4,14 @@ import json
 import hashlib
 import re
 import sys
-
+from flask import Flask, send_file, jsonify
 from weasyprint import HTML
 from pathlib import Path
 from datetime import datetime
+from io import BytesIO
 from utils import get_config
+
+app = Flask(__name__)
 
 
 class Report(object):
@@ -47,8 +50,7 @@ class Report(object):
             return json.load(json_file)
 
     def generate_report(self):
-        """Generate the full report and save it as report.pdf """
-
+        """Generate the full report as HTML content"""
         content = self.generate_page_header()
         content += self.generate_header()
         content += self.generate_warning()
@@ -56,10 +58,16 @@ class Report(object):
         content += self.generate_suspect_conns_block()
         content += self.generate_uncat_conns_block()
         content += self.generate_whitelist_block()
+        content += self.generate_page_footer()
+        return content
 
-        htmldoc = HTML(string=content, base_url="").write_pdf()
-        Path(os.path.join(self.capture_directory,
-                          "report.pdf")).write_bytes(htmldoc)
+    def generate_pdf(self):
+        """Generate the PDF report"""
+        content = self.generate_report()
+        pdf_file = BytesIO()
+        HTML(string=content, base_url=self.capture_directory).write_pdf(pdf_file)
+        pdf_file.seek(0)
+        return pdf_file
 
     def generate_warning(self):
         """Generate the main warning message on the report
@@ -473,3 +481,20 @@ class Report(object):
                         </style>
                     </head>
                     <body>""".replace("REPORT_HEADER", "{} {}".format(self.template["report_for_the_capture"], self.capture_sha1)).replace("REPORT_FOOTER", self.template["report_footer"])
+
+@app.route("/download-report", methods=["GET"])
+def download_report():
+    """Endpoint to generate and download the PDF report."""
+    try:
+        # Using the default structure from SpyGuard
+        capture_directory = os.path.join(os.getcwd(), "captures/example_capture")
+        analysis_duration = 600  # Example duration; adjust as needed
+
+        report = Report(capture_directory=capture_directory, analysis_duration=analysis_duration)
+        pdf_file = report.generate_pdf()
+        return send_file(pdf_file, download_name="report.pdf", as_attachment=True)
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+if __name__ == "__main__":
+    app.run(debug=True, host="0.0.0.0", port=5000)
