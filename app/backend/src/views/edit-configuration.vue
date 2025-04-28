@@ -29,7 +29,7 @@
                 </label>
                 <label class="form-switch">
                     <input type="checkbox" @change="switch_config('frontend', 'download_links')" v-model="config.frontend.download_links">
-                    <i class="form-icon"></i> Utilisez le téléchargement dans le navigateur pour les captures réseau.
+                    <i class="form-icon"></i> Utiliser le téléchargement dans le navigateur pour les captures réseau.
                 </label>
                 <label class="form-switch">
                     <input type="checkbox" @change="switch_config('frontend', 'sparklines')" v-model="config.frontend.sparklines">

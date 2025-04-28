@@ -148,27 +148,21 @@ class Config(object):
                 attachment_filename='spyguard-export-db.sqlite')
 
     def get_ifaces_in(self) -> list:
-        """ List the wireless interfaces which can be 
-        used for the access point
-
-        Returns:
-            list: List of available network interfaces
-        """
-        try:
+        """Force wlan0, but fallback to auto-detection if missing"""
+        forced_iface = "wlan0"
+        if forced_iface in os.listdir("/sys/class/net/"):
+            return [forced_iface]
+        else:
+            # Fallback auto-detection (comme avant)
             return [i for i in os.listdir("/sys/class/net/") if i.startswith("wl")]
-        except:
-            return ["No wireless interface"]
 
     def get_ifaces_out(self) -> list:
-        """ List the network interfaces which can be 
-        used to access to Internet.
-
-        Returns:
-            list: List of available network interfaces
-        """
-        try:
+        """Force eth0, but fallback to auto-detection if missing"""
+        forced_iface = "eth0"
+        if forced_iface in os.listdir("/sys/class/net/"):
+            return [forced_iface]
+        else:
+            # Fallback auto-detection (comme avant)
             ifaces = ("wl", "et", "en", "ww", "lo")
             return [i for i in os.listdir("/sys/class/net/") if i.startswith(ifaces)]
-        except:
-            return ["No network interfaces"]
 
