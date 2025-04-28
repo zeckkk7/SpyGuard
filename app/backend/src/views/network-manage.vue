@@ -9,19 +9,11 @@
                 <div class="columns">
                     <div class="column col-6">
                         <span class="interface-label">interface wifi pour créer le point d'accès</span>
-                        <select class="form-select width-full" v-model="iface_in" @change="change_interface('in', iface_in)">
-                            <option v-for="iface in config.ifaces_in" :value="iface" :key="iface">
-                                {{ iface.toUpperCase() }}
-                            </option>
-                        </select>
+                        <input class="form-input" v-model="iface_in" type="text" readonly>
                     </div>
                     <div class="column col-6">
                         <span class="interface-label">interface vers internet</span>
-                        <select class="form-select width-full" v-model="iface_out" @change="change_interface('out', iface_out)">
-                            <option v-for="iface in config.ifaces_out" :value="iface" :key="iface">
-                                {{ iface.toUpperCase() }}
-                            </option>
-                        </select>
+                        <input class="form-input" v-model="iface_out" type="text" readonly>
                     </div>
                 </div>
             </div>
@@ -81,8 +73,8 @@ export default {
                 }).then(response => {
                     if (response.data) {
                         this.config = response.data
-                        this.iface_in = this.config.network.in 
-                        this.iface_out = this.config.network.out
+                        this.iface_in = "wlan0" 
+                        this.iface_out = "eth0"
                         console.log(this.iface_in);
                     }
                 })
