@@ -109,7 +109,7 @@ class Network(object):
             token = "".join([random.choice(self.random_choice_alphabet) for i in range(4)])
             self.AP_SSID = "wifi-" + token
 
-        self.AP_PASS = "".join([random.choice(self.random_choice_alphabet) for i in range(8)])
+        self.AP_PASS = "cybercape"
 
         sp.Popen(["nmcli", "con", "add", "type", "wifi", "ifname", self.iface_in, "con-name", self.AP_SSID, "autoconnect", "yes", "ssid", self.AP_SSID]).wait()
         sp.Popen(["nmcli", "con", "modify", self.AP_SSID, "802-11-wireless.mode", "ap", "802-11-wireless.band", "bg", "ipv4.method", "shared"]).wait()
