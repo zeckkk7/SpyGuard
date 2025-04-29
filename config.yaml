@@ -43,18 +43,11 @@ network:
   internet_check: https://1.1.1.1
   out: lo
   ssids:
-  - Free
-  - Public
-  - Wifi
-  - Coffee
-  - Netgear
-  - Default
-  - D-link
-  - Guest
-  - WLAN
-  - ZyXEL
-  - Asus
-  - Wireless
+  - cybercape1
+  - cybercape2
+  - cybercape3
+  - cybercape4
+  - cybercape5
   tokenized_ssids: true
 project:
   path: /usr/share/spyguard
