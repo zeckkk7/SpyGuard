@@ -61,7 +61,7 @@ class Save():
                                         "message": "Capture saved on the USB key"})
                 elif method == "url":
                     cd = datetime.now().strftime("%d%m%Y-%H%M")
-                    if shutil.make_archive("~/Downloads/SpyGuard_{}".format(cd), "zip", "~/Dowloads/{}/".format(token)):
+                    if shutil.make_archive("~/Downloads/SpyGuard_{}".format(cd), "zip", "~/Downloads/{}/".format(token)):
                         shutil.rmtree("~/Downloads/{}/".format(token))
                         with open("~/Downloads/SpyGuard_{}.zip".format(cd), "rb") as f:
                             return send_file(
