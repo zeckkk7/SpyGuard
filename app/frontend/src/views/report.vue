@@ -174,25 +174,6 @@ export default {
         capture_token: String
     },
     methods: {
-        downloadPdf: function() {
-        // URL de l'API Flask pour télécharger le rapport
-        const url = '/download-report';
-        axios({
-            url: url,
-            method: 'GET',
-            responseType: 'blob', // Important pour les fichiers binaires
-        })
-        .then((response) => {
-            const blob = new Blob([response.data], { type: 'application/pdf' });
-            const link = document.createElement('a');
-            link.href = window.URL.createObjectURL(blob);
-            link.download = 'report.pdf'; // Nom du fichier
-            link.click();
-        })
-        .catch((error) => {
-            console.error('Erreur lors du téléchargement du PDF :', error);
-        });
-        },
         save_capture: function() {
             console.log("[report.vue] Saving the capture");
             router.replace({ name: 'save-capture', params: { capture_token: this.capture_token } });
