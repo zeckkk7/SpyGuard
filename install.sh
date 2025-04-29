@@ -222,6 +222,8 @@ install_dep() {
     # Création du script de démarrage
     cat << 'EOF' > /tmp/start_spyguard.sh
 #!/bin/bash
+cd /usr/share/
+chown -R $(whoami) spyguard/
 cd /usr/share/spyguard/app/backend
 volta pin node@16
 volta pin npm@6
