@@ -62,7 +62,7 @@ class Save():
                 elif method == "url":
                     cd = datetime.now().strftime("%d%m%Y-%H%M")
                     if shutil.make_archive("/home/pi/Downloads/SpyGuard_{}".format(cd), "zip", "/home/pi/Downloads/{}/".format(token)):
-                        shutil.rmtree("/home/pi/Downloads{}/".format(token))
+                        shutil.rmtree("/home/pi/Downloads/{}/".format(token))
                         with open("/home/pi/Downloads/SpyGuard_{}.zip".format(cd), "rb") as f:
                             return send_file(
                                 io.BytesIO(f.read()),
