@@ -66,10 +66,10 @@
             <div class="accordion-body">
               <ul class="menu menu-nav">
                 <li class="menu-item">
-                  <span @click="$router.push('/instances/watchers')">Watchers Instances</span>
+                  <span @click="$router.push('/instances/watchers')">Instances Watchers</span>
                 </li>
                 <li class="menu-item">
-                  <span @click="$router.push('/instances/misp')">MISP Instances</span>
+                  <span @click="$router.push('/instances/misp')">Instances MISP</span>
                 </li>
               </ul>
             </div>

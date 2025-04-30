@@ -16,7 +16,7 @@
           <div v-if="tabs.import">
                 <label class="form-upload empty" for="upload">
                     <input type="file" class="upload-field" id="upload" @change="import_from_file">
-                    <p class="empty-title h5">Drop ou selectionner une database à importer.</p>
+                    <p class="empty-title h5">Drop ou sélectionner une database à importer.</p>
                     <p class="empty-subtitle">La database doit être exporter depuis une instance SpyGuard.</p>
                 </label>
             </div>

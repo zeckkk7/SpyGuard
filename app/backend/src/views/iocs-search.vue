@@ -6,13 +6,13 @@
             <textarea class="form-input" id="input-example-3" placeholder="Paste your IOCs here" rows="3" v-model="iocs"></textarea>
           </div>
           <div class="form-group">
-            <button class="btn btn-primary col-12" v-on:click="search_iocs()">Search</button>
+            <button class="btn btn-primary col-12" v-on:click="search_iocs()">Rechercher</button>
           </div>
           <div class="form-group" v-if="results.length>0 ">
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr>
-                            <th>Indicator</th>
+                            <th>Indicateur</th>
                             <th>Tag</th>
                             <th>TLP</th>
                             <th>Source</th>
@@ -25,7 +25,7 @@
                             <td class="upper">{{ r.tag }}</td>
                             <td><label :class="['tlp-' + r.tlp]">{{ r.tlp }}</label></td>
                             <td class="capi">{{ r.source }}</td>
-                            <td><button class="btn btn-sm" v-on:click="remove(r)">Delete</button></td>
+                            <td><button class="btn btn-sm" v-on:click="remove(r)">Supprimer</button></td>
                         </tr>
                     </tbody>
                 </table>
@@ -36,12 +36,12 @@
                         <p class="empty-title h5">
                             <span class="loading loading-lg"></span>
                         </p>
-                        <p class="empty-subtitle">Finding your IOC(s)...</p>
+                        <p class="empty-subtitle">Recherche de votre IOC(s)...</p>
                     </div>
                 </div>
                 <div v-else>
                     <div class="empty">
-                        <p class="empty-title h5">IOC<span v-if="this.iocs.match(/[^\r\n]+/g).length>1">s</span> not found.</p>
+                        <p class="empty-title h5">IOC<span v-if="this.iocs.match(/[^\r\n]+/g).length>1">s</span> pas trouvé.</p>
                         <p class="empty-subtitle">Try wildcard search to expend your search.</p>
                     </div>
                 </div>

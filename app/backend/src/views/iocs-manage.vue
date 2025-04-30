@@ -1,16 +1,16 @@
 <template>
     <div class="backend-content" id="content">
         <div class="column col-8 col-xs-12">
-          <h3 class="s-title">Manage IOCs</h3>
+          <h3 class="s-title">Gérer les IOCs</h3>
           <ul class="tab tab-block">
             <li class="tab-item">
-                <a href="#" v-on:click="switch_tab('bulk')" v-bind:class="{ active: tabs.bulk }">Bulk import</a>
+                <a href="#" v-on:click="switch_tab('bulk')" v-bind:class="{ active: tabs.bulk }">Importer un IOC</a>
             </li>
             <li class="tab-item">
-                <a href="#" v-on:click="switch_tab('file')" v-bind:class="{ active: tabs.file }">File import</a>
+                <a href="#" v-on:click="switch_tab('file')" v-bind:class="{ active: tabs.file }">Importer un fichier</a>
             </li>
             <li class="tab-item">
-                <a href="#" v-on:click="switch_tab('export')" v-bind:class="{ active: tabs.export }">Export IOCs</a>
+                <a href="#" v-on:click="switch_tab('export')" v-bind:class="{ active: tabs.export }">Exporter les IOCs</a>
             </li>
           </ul>
           <div v-if="tabs.export">
@@ -19,8 +19,8 @@
           <div v-if="tabs.file">
             <label class="form-upload empty" for="upload">
                 <input type="file" class="upload-field" id="upload" @change="import_from_file">
-                <p class="empty-title h5">Drop or select a file to import.</p>
-                <p class="empty-subtitle">The file needs to be an export from a SpyGuard instance.</p>
+                <p class="empty-title h5">Drop ou sélectionne un fichier à importer.</p>
+                <p class="empty-subtitle">Le fichier doit être un fichier exporté depuis une instance SpyGuard.</p>
             </label>
           </div>
           <div v-if="tabs.bulk">
@@ -62,26 +62,26 @@
                 <textarea class="form-input" id="input-example-3" placeholder="Paste your Indicators of Compromise here" rows="15" v-model="iocs"></textarea>
             </div>
             <div class="form-group">
-                <button class="btn-primary btn col-12" v-on:click="import_from_bulk()">Import the IOCs</button>
+                <button class="btn-primary btn col-12" v-on:click="import_from_bulk()">Importer les IOCs</button>
             </div>
           </div>
           <div class="form-group" v-if="imported.length>0">
             <div class="toast toast-success">
-                ✓ {{imported.length}} IOC<span v-if="errors.length>1">s</span> imported successfully.
+                ✓ {{imported.length}} IOC<span v-if="errors.length>1">s</span> importé avec succès.
             </div>
           </div>
             <div v-if="errors.length>0">
                 <div class="form-group">
                     <div class="toast toast-error">
-                        ✗ {{errors.length}} IOC<span v-if="errors.length>1">s</span> not imported, see details below.
+                        ✗ {{errors.length}} IOC<span v-if="errors.length>1">s</span> pas importé, voir le détail ci-dessous.
                     </div>
                 </div>
                 <div class="form-group">
                     <table class="table table-striped table-hover">
                         <thead>
                             <tr>
-                                <th>Indicator</th>
-                                <th>Importation error</th>
+                                <th>Indicateur</th>
+                                <th>Erreur d'importation</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -96,13 +96,13 @@
             <div v-else-if="type_tag_error==true">
                 <div  class="form-group">
                     <div class="toast toast-error">
-                        ✗ IOC(s) not imported, see details below.
+                        ✗ IOC(s) pas importé, voir les détails en dessous.
                     </div>
                 </div>
                 <div  class="form-group">
                     <div class="empty">
-                        <p class="empty-title h5">Please select a tag and a type.</p>
-                        <p class="empty-subtitle">If different IOCs types, select "Unknown (regex parsing)".</p>
+                        <p class="empty-title h5">Veuillez sélectionner un tag et un type.</p>
+                        <p class="empty-subtitle">Si les IOCs sont de types différents, sélectionnez "Unknown (regex parsing)".</p>
                     </div>
                 </div>
             </div>
