@@ -18,7 +18,7 @@
             <div class="accordion-body">
               <ul class="menu menu-nav">
                 <li class="menu-item">
-                  <span @click="$router.push('/device/configuration')">Config appareil</span>
+                  <span @click="$router.push('/device/configuration')">Config SpyGuard</span>
                 </li>
                 <li class="menu-item">
                   <span @click="$router.push('/engine/configuration')">Outil d'analyse</span>

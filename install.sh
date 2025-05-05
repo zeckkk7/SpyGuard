@@ -145,8 +145,7 @@ packages=("tshark"
 	   "dnsutils"
 	   "python3-pip"
 	   "python3-venv"
-	   "net-tools"
-	   "gnome-terminal")
+	   "net-tools")
  
 echo -e "\e[39m[+] Checking dependencies...\e[39m"
 for package in "${packages[@]}"
@@ -207,34 +206,6 @@ feeding_iocs() {
     # Then, let's activate watchers service
     systemctl start spyguard-watchers
 }
-install_dep() {
-    echo -e "\e[39m[+] Installation des dépendances"
-    
-    # Installation de Volta
-    curl https://get.volta.sh | bash
-    export VOLTA_HOME="$HOME/.volta"
-    export PATH="$VOLTA_HOME/bin:$PATH"
-    
-    # Changement de propriétaire du dossier
-    cd /usr/share/
-    chown -R $(whoami) spyguard/
-
-    # Création du script de démarrage
-    cat << 'EOF' > /tmp/start_spyguard.sh
-#!/bin/bash
-cd /usr/share/spyguard/app/backend
-volta pin node@16
-volta pin npm@6
-npm i 
-npm run build
-systemctl restart spyguard-backend.service
-EOF
-
-    chmod +x /tmp/start_spyguard.sh
-
-    # Lancer le script dans un nouveau terminal
-    gnome-terminal -- /tmp/start_spyguard.sh
-}
 
 if [[ $EUID -ne 0 ]]; then
     echo "This must be run as root. Type in 'sudo bash $0' to run."
@@ -261,5 +232,4 @@ else
     create_services
     feeding_iocs
     cleaning
-    install_dep
 fi
