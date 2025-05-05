@@ -4,14 +4,11 @@ import json
 import hashlib
 import re
 import sys
-from flask import Flask, send_file, jsonify
+
 from weasyprint import HTML
 from pathlib import Path
 from datetime import datetime
-from io import BytesIO
 from utils import get_config
-
-app = Flask(__name__)
 
 
 class Report(object):
@@ -50,7 +47,8 @@ class Report(object):
             return json.load(json_file)
 
     def generate_report(self):
-        """Generate the full report as HTML content"""
+        """Generate the full report and save it as report.pdf """
+
         content = self.generate_page_header()
         content += self.generate_header()
         content += self.generate_warning()
@@ -58,16 +56,10 @@ class Report(object):
         content += self.generate_suspect_conns_block()
         content += self.generate_uncat_conns_block()
         content += self.generate_whitelist_block()
-        content += self.generate_page_footer()
-        return content
 
-    def generate_pdf(self):
-        """Generate the PDF report"""
-        content = self.generate_report()
-        pdf_file = BytesIO()
-        HTML(string=content, base_url=self.capture_directory).write_pdf(pdf_file)
-        pdf_file.seek(0)
-        return pdf_file
+        htmldoc = HTML(string=content, base_url="").write_pdf()
+        Path(os.path.join(self.capture_directory,
+                          "report.pdf")).write_bytes(htmldoc)
 
     def generate_warning(self):
         """Generate the main warning message on the report
