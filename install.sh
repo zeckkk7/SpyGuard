@@ -214,21 +214,19 @@ install_dep() {
     export VOLTA_HOME="$HOME/.volta"
     export PATH="$VOLTA_HOME/bin:$PATH"
     
-    # Changement de propriétaire du dossier
+    # Changement de propriétaire du dossier sinon problème de droit
     cd /usr/share/
     chown -R $(whoami) spyguard/
 
     # Création du script de démarrage
     cat << 'EOF' > /tmp/start_spyguard.sh
 #!/bin/bash
-cd /usr/share/
-chown -R $(whoami) spyguard/
 cd /usr/share/spyguard/app/backend
 volta pin node@16
 volta pin npm@6
-npm i 
-npm run build
-systemctl restart spyguard-backend.service
+cd /usr/share/spyguard/app/frontend
+volta pin node@16
+volta pin npm@6
 EOF
 
     chmod +x /tmp/start_spyguard.sh
